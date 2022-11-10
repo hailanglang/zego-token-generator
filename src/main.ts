@@ -4,13 +4,13 @@ import md5 from 'md5';
 
 const getTokenUrl = `https://roomkit-api.zego.im/auth/get_sdk_token`
 
-interface RoomkitTokenInter { deviceId: string, SecretSign: string, SecretID: string }
+interface RoomkitTokenInter { deviceID: string, SecretSign: string, SecretID: string }
 
-const roomkitToken = async ({ deviceId, SecretSign, SecretID }: RoomkitTokenInter): Promise<string | Error> => {
+const getRoomkitToken = async ({ deviceID, SecretSign, SecretID }: RoomkitTokenInter): Promise<string | Error> => {
   const timestamp = Math.floor(new Date().getTime() / 1000) + 3600 * 24
   const verifyType = 3
   const version = 1
-  const signStr = `${SecretSign.substr(0, 32)}${deviceId}${verifyType}${version}${timestamp}`
+  const signStr = `${SecretSign.substr(0, 32)}${deviceID}${verifyType}${version}${timestamp}`
   const sign = md5(signStr)
 
   const res = await axios({
@@ -22,7 +22,7 @@ const roomkitToken = async ({ deviceId, SecretSign, SecretID }: RoomkitTokenInte
       },
       sign: sign,
       secret_id: SecretID,
-      device_id: deviceId,
+      device_id: deviceID,
       timestamp: timestamp
     }
   })
@@ -31,4 +31,4 @@ const roomkitToken = async ({ deviceId, SecretSign, SecretID }: RoomkitTokenInte
 }
 
 
-export { roomkitToken };
+export { getRoomkitToken };
