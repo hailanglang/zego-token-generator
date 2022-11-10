@@ -1,23 +1,34 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import { setupCounter } from './counter'
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+import axios from 'axios';
+import md5 from 'md5';
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const getTokenUrl = `https://roomkit-api.zego.im/auth/get_sdk_token`
+
+interface RoomkitTokenInter { deviceId: string, SecretSign: string, SecretID: string }
+
+const roomkitToken = async ({ deviceId, SecretSign, SecretID }: RoomkitTokenInter): Promise<string | Error> => {
+  const timestamp = Math.floor(new Date().getTime() / 1000) + 3600 * 24
+  const verifyType = 3
+  const version = 1
+  const signStr = `${SecretSign.substr(0, 32)}${deviceId}${verifyType}${version}${timestamp}`
+  const sign = md5(signStr)
+
+  const res = await axios({
+    method: "post",
+    url: getTokenUrl,
+    data: {
+      common_data: {
+        platform: 32
+      },
+      sign: sign,
+      secret_id: SecretID,
+      device_id: deviceId,
+      timestamp: timestamp
+    }
+  })
+  if (res.data.ret.code !== 0) throw new Error(`get token error:{code:${res.data.ret.code},message:${res.data.ret.message}}`)
+  return res.data.data.sdk_token
+}
+
+
+export { roomkitToken };
