@@ -1,6 +1,6 @@
 {
   "name": "@hailanglang/zego-token-generator",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "exports": {
     ".": {
       "import": "./dist/main.es.js",
@@ -10,6 +10,7 @@
   "main": "./dist/main.cjs.js",
   "module": "./dist/main.es.js",
   "typings": "./dist/main.d.ts",
+  "unpkg": "dist/main.iife.js",
   "files": [
     "dist"
   ],
