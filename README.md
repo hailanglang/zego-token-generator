@@ -5,7 +5,7 @@
 ### Get Roomkit Token
 
 ```javascript
-const { getRoomkitToken } from "@hailanglang/zego-token-generator"
+import { getRoomkitToken } from "@hailanglang/zego-token-generator"
 
 // Refer https://doc-zh.zego.im/article/12854 to get SecretID and SecretSign
 const SecretID = 0; 
