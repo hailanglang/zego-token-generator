@@ -10,7 +10,7 @@ const getRoomkitToken = async ({ deviceID, SecretSign, SecretID }: RoomkitTokenI
   const timestamp = Math.floor(new Date().getTime() / 1000) + 3600 * 24
   const verifyType = 3
   const version = 1
-  const signStr = `${SecretSign.substr(0, 32)}${deviceID}${verifyType}${version}${timestamp}`
+  const signStr = `${SecretSign.substring(0, 32)}${deviceID}${verifyType}${version}${timestamp}`
   const sign = md5(signStr)
 
   const res = await axios({
