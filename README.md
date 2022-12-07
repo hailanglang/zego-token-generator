@@ -27,7 +27,7 @@ const SecretSign = '';
 const deviceID = ZegoRoomKit.deviceID(); // https://doc-zh.zego.im/article/8111
 
 getRoomkitToken({ deviceId, SecretSign, SecretID }).then(token => {
-    console.log('mytag token', token)
+    console.log('token', token)
 })
 
 ```
@@ -45,8 +45,8 @@ getRoomkitToken({ deviceId, SecretSign, SecretID }).then(token => {
     const SecretSign = '';
     const deviceID = ZegoRoomKit.deviceID(); // https://doc-zh.zego.im/article/8111
     
-    zegoTokenGenrator.getRoomkitToken({ deviceID, secretSign: SecretSign, secretID: SecretID }).then(token => {
-        console.log('mytag token', token)
+    zegoTokenGenerator.getRoomkitToken({ deviceID, secretSign: SecretSign, secretID: SecretID }).then(token => {
+        console.log('token', token)
     })
 </script>
 ```

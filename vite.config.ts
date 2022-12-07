@@ -22,7 +22,7 @@ export default defineConfig({
     minify: true,
     reportCompressedSize: true,
     lib: {
-      name: 'zegoTokenGenrator',
+      name: 'zegoTokenGenerator',
       entry: path.resolve(__dirname, "src/main.ts"),
       fileName: "main",
       formats: ["es", "cjs", "iife"],
