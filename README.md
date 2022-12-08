@@ -5,7 +5,7 @@
 ## Installing
 
 ```
-yarn add @hailanglang/zego-token-generator"
+yarn add zego-token-generator"
 ```
 
 
@@ -19,7 +19,7 @@ yarn add @hailanglang/zego-token-generator"
 ##### using `import`
 
 ```javascript
-import { getRoomkitToken } from "@hailanglang/zego-token-generator"
+import { getRoomkitToken } from "zego-token-generator"
 
 // Refer https://doc-zh.zego.im/article/12854 to get SecretID and SecretSign
 const SecretID = 0; 
@@ -37,7 +37,7 @@ getRoomkitToken({ deviceId, SecretSign, SecretID }).then(token => {
 ##### Using unpkg CDN:
 
 ```javascript
-<script src="https://unpkg.com/@hailanglang/zego-token-generator@0.0.12/dist/main.iife.js"></script>
+<script src="https://unpkg.com/zego-token-generator@0.0.12/dist/main.iife.js"></script>
 <script>
 
     // Refer https://doc-zh.zego.im/article/12854 to get SecretID and SecretSign
