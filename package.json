@@ -1,5 +1,5 @@
 {
-  "name": "@hailanglang/zego-token-generator",
+  "name": "zego-token-generator",
   "version": "0.0.13",
   "exports": {
     ".": {
